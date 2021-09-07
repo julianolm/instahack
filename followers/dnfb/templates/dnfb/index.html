@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'dnfb/style.css' %}">
+</head>
+<body>
+
+    <div class="header">
+      <h1><a href="#">
+          <img src="../../static/dnfb/images/insta_logo.svg" width="70px" alt="logo"
+               style="position:relative;
+                      top:10px;
+                      padding-right:0px;
+                      margin-right:0px;"/></a>
+          Instahack
+      </h1>
+    </div>
+
+    <hr/>
+
+    <div id="main">
+        <h1>
+            Check out users who do not follow you back
+        </h1>
+
+        <div id="input">
+        <form action="{% url 'dnfb:dnfb' %}" method="get">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="check out">
+        </form>
+
+
+        <p>Note: It will probably take a long while if you really is Neymar Jr.</p>
+        </div>
+
+        {% if dumbs_list %}
+            <h2>Users who do not follow {{username}} back:</h2>
+            <ul style="list-style-type:none">
+                {% for dumb in dumbs_list %}
+                <li>{{ dumb }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if error %}
+            <h2 style="color:red;">We are sory, but...</h2>
+            <p>{{ error }}</p>
+        {% endif %}
+    </div>
+
+    {% if not dumbs_list %}
+    <div id="time-warning">
+        <h4>Expected time: 56 seconds</h4>
+        <p id="">Please excuse us for the large delay. That is necessary due to the fact that instagram does not
+        provide us a full list of user's followers at once.</p>
+    </div>
+    {% endif %}
+
+</body>
+</html>

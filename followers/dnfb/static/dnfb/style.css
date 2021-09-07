@@ -1,0 +1,30 @@
+body {
+    background: white url("images/background.png");
+}
+
+#main{
+    text-align: center;
+}
+
+#input {
+
+}
+
+#time-warning {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  height: 35px;
+}
+#time-warning h4{
+    margin:0;
+}
+#time-warning p{
+    height:10px;
+    font-size:small;
+    margin: 0;
+}
